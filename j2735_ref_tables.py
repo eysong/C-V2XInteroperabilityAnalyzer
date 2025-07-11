@@ -280,3 +280,221 @@ saej2735_map_ref = [
     ["j2735_2016.LaneID", "j2735_2016.overlays_element", 1, 0, 0, 255, False]
 ]
 saej2735_map_refdf = pd.DataFrame(saej2735_map_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"]) 
+
+saej2735_pvd_ref = [
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.segNum", "j2735_2016.value_element", 2, 0, 0, 32767, False],
+	# probeID
+    	["j2735_2016.name", "j2735_2016.probeID_element", 63, 5, 1, 63, False],
+    	["j2735_2016.vin", "j2735_2016.probeID_element", 17, 1, 1, 17, False],
+    	["j2735_2016.ownerCode", "j2735_2016.probeID_element", 32, 5, 1, 32, False],
+		# id
+			["j2735_2016.entityID", "j2735_2016.id", 4, 1, 4, 4, False],
+			["j2735_2016.stationID", "j2735_2016.id", 4, 1, 0, 4294967295, False],
+		# vehicleType    
+			["j2735_2016.vehicleType", "j2735_2016.probeID_element", 1, 0, 0, 16, False],
+		# vehicleClass
+			["j2735_2016.vGroup", "j2735_2016.vehicleClass", 2, 0, 9217, 9251, False],
+			["j2735_2016.rGroup", "j2735_2016.vehicleClass", 2, 0, 9729, 9742, False],
+			["j2735_2016.rEquip", "j2735_2016.vehicleClass", 2, 0, 9985, 10113, False],
+	# startVector
+		# utcTime
+			["j2735_2016.year", "j2735_2016.utcTime_element", 2, 0, 0, 4095, False],
+			["j2735_2016.month", "j2735_2016.utcTime_element", 1, 0, 0, 12, False],
+			["j2735_2016.day", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+			["j2735_2016.hour", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+			["j2735_2016.minute", "j2735_2016.utcTime_element", 1, 0, 0, 60, False],
+			["j2735_2016.second", "j2735_2016.utcTime_element", 2, 0, 0, 65535, False],
+			["j2735_2016.offset", "j2735_2016.utcTime_element", 2, 0, -840, 840, False],
+		["j2735_2016.long", "j2735_2016.startVector_element", 4, 0, -1799999999, 1800000001, True],
+		["j2735_2016.lat", "j2735_2016.startVector_element", 4, 0, -900000000, 900000001, True],
+		["j2735_2016.elevation", "j2735_2016.startVector_element", 2, 0, -4096, 61439, False],
+		["j2735_2016.heading", "j2735_2016.startVector_element", 2, 0, 0, 28800, False],
+		# speed - transmission state (0-7) and speed (velocity)
+			["j2735_2016.transmission", "j2735_2016.speed_element", 1, 0, 0, 7, False],
+			["j2735_2016.speed", "j2735_2016.speed_element", 2, 0, 0, 8191, False],
+		# posAccuracy
+			["j2735_2016.semiMajor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+			["j2735_2016.semiMinor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+			["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, False],
+		["j2735_2016.timeConfidence", "j2735_2016.startVector_element", 1, 0, 0, 39, False],
+		# posConfidence
+			["j2735_2016.pos", "j2735_2016.posConfidence_element", 1, 0, 0, 15, True],
+			["j2735_2016.elevation", "j2735_2016.posConfidence_element", 1, 0, 0, 15, True],
+		# speedConfidence - speed and heading throttle confidence
+			["j2735_2016.heading", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+			["j2735_2016.speed", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+			["j2735_2016.throttle", "j2735_2016.speedConfidence_element", 1, 0, 0, 3, False],
+	# vehicleType  
+		["j2735_2016.keyType", "j2735_2016.vehicleType_element", 1, 0, 0, 255, False],
+		["j2735_2016.role", "j2735_2016.vehicleType_element", 1, 0, 0, 22, False],
+		["j2735_2016.iso3883", "j2735_2016.vehicleType_element", 1, 0, 0, 100, False],
+		["j2735_2016.hpmsType", "j2735_2016.vehicleType_element", 1, 0, 0, 15, False],
+		["j2735_2016.vehicleType", "j2735_2016.vehicleType_element", 2, 0, 9217, 9251, False],
+		["j2735_2016.responseEquip", "j2735_2016.vehicleType_element", 2, 0, 9985, 10113, False],
+		["j2735_2016.responderType", "j2735_2016.vehicleType_element", 2, 0, 9729, 9742, False],
+		["j2735_2016.fuelType", "j2735_2016.vehicleType_element", 1, 0, 0, 15, False], 
+		# ["j2735_2016.regional", "j2735_2016.vehicleType_element", 1, 0, 1, 4, False],    
+		
+	# snapshots
+		# thePosition
+			# utcTime
+			# long/lat/elevation/heading
+			# speed - transmission state (0-7) and speed (velocity)
+			# posAccuracy
+			# timeConfidence
+			# posConfidence
+			# speedConfidence - speed and heading throttle confidence
+		# safetyExt(ensions)
+			["j2735_2016.events", "j2735_2016.safetyExt_element", 1, 0, 0, 12, False],
+			# pathHistory
+				# initialPosition
+					# utcTime
+						["j2735_2016.year", "j2735_2016.utcTime_element", 2, 0, 0, 4095, False],
+						["j2735_2016.month", "j2735_2016.utcTime_element", 1, 0, 0, 12, False],
+						["j2735_2016.day", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+						["j2735_2016.hour", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+						["j2735_2016.minute", "j2735_2016.utcTime_element", 1, 0, 0, 60, False],
+						["j2735_2016.second", "j2735_2016.utcTime_element", 2, 0, 0, 65535, False],
+						["j2735_2016.offset", "j2735_2016.utcTime_element", 2, 0, -840, 840, False],
+                    # speed - transmission state (0-7) and speed (velocity)
+						["j2735_2016.transmission", "j2735_2016.speed_element", 1, 0, 0, 7, False],
+						["j2735_2016.speed", "j2735_2016.speed_element", 2, 0, 0, 8191, False],
+					["j2735_2016.long", "j2735_2016.initialPosition_element", 4, 0, -1799999999, 1800000001, True],
+					["j2735_2016.lat", "j2735_2016.initialPosition_element", 4, 0, -900000000, 900000001, True],
+					["j2735_2016.elevation", "j2735_2016.initialPosition_element", 2, 0, -4096, 61439, False],
+					["j2735_2016.heading", "j2735_2016.initialPosition_element", 2, 0, 0, 28800, False],
+                #posAccuracy
+					["j2735_2016.semiMajor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+					["j2735_2016.semiMinor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+					["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, False],  
+			# pathPrediction
+				["j2735_2016.radiusOfCurve", "j2735_2016.pathPrediction_element", 2, 0, -32726, 32726, False],
+				["j2735_2016.confidence", "j2735_2016.pathPrediction_element", 1, 0, 0, 200, False],  
+			["j2735_2016.lights", "j2735_2016.safetyExt_element", 1, 0, 0, 8, False],
+		# dataSet/vehicleStatus
+			["j2735_2016.lights", "j2735_2016.dataSet_element", 1, 0, 0, 9, False],	    
+			["j2735_2016.lightBar", "j2735_2016.dataSet_element", 1, 0, 0, 8, False],	    
+			# wipers
+				["j2735_2016.statusfront", "j2735_2016.safetyExt_element", 1, 0, 0, 6, False],	
+				["j2735_2016.rateFront", "j2735_2016.safetyExt_element", 1, 0, 0, 127, False],	
+				["j2735_2016.statusRear", "j2735_2016.safetyExt_element", 1, 0, 0, 6, False],	
+				["j2735_2016.rateRear", "j2735_2016.safetyExt_element", 1, 0, 0, 127, False],	 	   
+			# brakeStatus
+				["j2735_2016.wheelBrakes", "j2735_2016.brakeStatus_element", 1, 0, 0, 4, False],	
+				["j2735_2016.tracktion", "j2735_2016.brakeStatus_element", 1, 0, 0, 3, False],	
+				["j2735_2016.abs", "j2735_2016.brakeStatus_element", 1, 0, 0, 3, False],	 	   
+				["j2735_2016.scs", "j2735_2016.brakeStatus_element", 1, 0, 0, 3, False],	
+				["j2735_2016.brakeBoost", "j2735_2016.brakeStatus_element", 1, 0, 0, 2, False],	 	   
+				["j2735_2016.auxBrakes", "j2735_2016.brakeStatus_element", 1, 0, 0, 3, False],	 	   
+			["j2735_2016.brakePressure", "j2735_2016.dataSet_element", 1, 0, 0, 15, False],	    
+			["j2735_2016.roadFriction", "j2735_2016.dataSet_element", 1, 0, 0, 50, False],	    
+			["j2735_2016.sunData", "j2735_2016.dataSet_element", 1, 0, 0, 1000, False],	    
+			["j2735_2016.rainData", "j2735_2016.dataSet_element", 1, 0, 0, 7, False],	    
+			["j2735_2016.airTemp", "j2735_2016.dataSet_element", 1, 0, 0, 191, False],		    
+			["j2735_2016.airPres", "j2735_2016.dataSet_element", 1, 0, 0, 255, False],		  	    
+			# steering
+				["j2735_2016.angle", "j2735_2016.steering_element", 1, 0, -126, 127, False],		  
+				["j2735_2016.confidence", "j2735_2016.steering_element", 1, 0, 0, 3, False],	
+				["j2735_2016.rate", "j2735_2016.steering_element", 1, 0, -127, 127, False],		    
+				["j2735_2016.wheels", "j2735_2016.steering_element", 1, 0, -128, 127, False],	
+			# accelSets
+				# accel4way
+					["j2735_2016.long", "j2735_2016.accel4way_element", 1, 0, -128, 127, False],
+                	["j2735_2016.lat", "j2735_2016.accel4way_element", 1, 0, -128, 127, False],
+                	["j2735_2016.vert", "j2735_2016.accel4way_element", 1, 0, -128, 127, False],
+                	["j2735_2016.yaw", "j2735_2016.accel4way_element", 1, 0, -128, 127, False],
+				["j2735_2016.vertAccelThres", "j2735_2016.accelSets_element", 1, 0, 0, 4, False],		    
+				["j2735_2016.yawRateCon", "j2735_2016.accelSets_element", 1, 0, 0, 7, False],		    
+				["j2735_2016.hozAccelCon", "j2735_2016.accelSets_element", 1, 0, 0, 7, False],		    
+				# confidenceSet
+					# accelConfidence
+						["j2735_2016.yawRate", "j2735_2016.accelConfidence_element", 1, 0, 0, 7, False],
+                        ["j2735_2016.acceleration", "j2735_2016.accelConfidence_element", 1, 0, 0, 7, False],
+						["j2735_2016.steeringWheelAngle", "j2735_2016.accelConfidence_element", 1, 0, 0, 3, False],
+                    # speedConfidence
+						["j2735_2016.heading", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+                        ["j2735_2016.speed", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+                        ["j2735_2016.throttle", "j2735_2016.speedConfidence_element", 1, 0, 0, 3, False],
+                    ["j2735_2016.timeConfidence", "j2735_2016.confidenceSet_element", 1, 0, 0, 39, False],
+                    # posConfidence
+                    	["j2735_2016.pos", "j2735_2016.posConfidence_element", 1, 0, 0, 15, False],
+                        ["j2735_2016.elevation", "j2735_2016.posConfidence_element", 1, 0, 0, 15, False],
+                    ["j2735_2016.steerConfidence", "j2735_2016.confidenceSet_element", 1, 0, 0, 3, False],
+                    ["j2735_2016.headingConfidence", "j2735_2016.confidenceSet_element", 1, 0, 0, 7, False],
+                    ["j2735_2016.throttleConfidence", "j2735_2016.confidenceSet_element", 1, 0, 0, 3, False],
+			# object
+				["j2735_2016.objDist", "j2735_2016.object_element", 2, 0, 0, 32726, False],		    
+				["j2735_2016.objDirect", "j2735_2016.object_element", 2, 0, 0, 28800, False],		    
+				# dateTime
+					["j2735_2016.year", "j2735_2016.dateTime_element", 2, 0, 0, 4095, False],
+					["j2735_2016.month", "j2735_2016.dateTime_element", 1, 0, 0, 12, False],
+					["j2735_2016.day", "j2735_2016.dateTime_element", 1, 0, 0, 31, False],
+					["j2735_2016.hour", "j2735_2016.dateTime_element", 1, 0, 0, 31, False],
+					["j2735_2016.minute", "j2735_2016.dateTime_element", 1, 0, 0, 60, False],
+					["j2735_2016.second", "j2735_2016.dateTime_element", 2, 0, 0, 65535, False],
+					["j2735_2016.offset", "j2735_2016.dateTime_element", 2, 0, -840, 840, False],
+			# fullPos
+				# utcTime
+				# long
+                # lat
+                # elevation
+				# speed - transmission state (0-7) and speed (velocity)
+				# posAccuracy
+				# timeConfidence
+				# posConfidence
+				# speedConfidence
+			["j2735_throttlePos", "j2735_2016.dataSet_element", 1, 0, 0, 200, False],	    
+			# speedHeadC
+				["j2735_2016.heading", "j2735_2016.speedHeadC_element", 1, 0, 0, 200, False],	
+				["j2735_2016.speed", "j2735_2016.speedHeadC_element", 1, 0, 0, 7, False],	
+				["j2735_2016.throttle", "j2735_2016.speedHeadC_element", 1, 0, 0, 3, False],		        
+			["j2735_2016.speedC", "j2735_2016.dataSet_element", 1, 0, 0, 7, False],	    
+			# vehicleData
+				["j2735_2016.height", "j2735_2016.vehicleData_element", 1, 0, 0, 127, False],	    		    
+				# bumpers
+					["j2735_2016.front", "j2735_2016.bumpers_element", 1, 0, 0, 127, False],	    
+					["j2735_2016.rear", "j2735_2016.bumpers_element", 1, 0, 0, 127, False],
+				["j2735_2016.mass", "j2735_2016.vehicleData_element", 1, 0, 0, 255, False],	    		    
+				["j2735_2016.trailerWeight", "j2735_2016.vehicleData_element", 1, 0, 0, 64255, False],	
+				["j2735_2016.type", "j2735_2016.vehicleData_element", 1, 0, 0, 15, False],		            
+			# vehicleIdent
+					# nsme
+					# vin
+					# onwerCode
+					# id
+					# vehicleType
+					# vehicleClass
+                    ["j2735_2016.name", "j2735_2016.vehicleIndent_element", 63, 5, 1, 63, False],
+                    ["j2735_2016.vin", "j2735_2016.vehicleIndent_element", 17, 1, 1, 17, False],
+                    ["j2735_2016.ownerCode", "j2735_2016.vehicleIndent_element", 32, 5, 1, 32, False],
+					# id
+                    	["j2735_2016.entityID", "j2735_2016.id_element", 4, 1, 0, 4, False],
+                        ["j2735_2016.stationID", "j2735_2016.id_element", 4, 0, 0, 4294967295, False],
+                    ["j2735_2016.vehicleType", "j2735_2016.vehicleIndent_element", 1, 0, 0, 15, False],
+                    # vehicleClass
+						["j2735_2016.vGroup", "j2735_2016.vehicleClass_element", 1, 0, 9217, 9251, False],
+						["j2735_2016.rGroup", "j2735_2016.vehicleClass_element", 1, 0, 9729, 9740, False],
+						["j2735_2016.rEquip", "j2735_2016.vehicleClass_element", 1, 0, 9985, 10113, False],
+			# j1939data
+					# ["j2735_2016.tire", "j2735_2016.j1939Data_element", 1, 0, 0, 15, False],
+					# ["j2735_2016.axles", "j2735_2016.j1939Data_element", 1, 0, 0, 15, False],
+					["j2735_2016.trailerWeight", "j2735_2016.j1939Data_element", 2, 0, 0, 64255, False],	  
+					["j2735_2016.cargoWeight", "j2735_2016.j1939Data_element", 2, 0, 0, 64255, False],
+					["j2735_2016.steeringAxleTemperature", "j2735_2016.j1939Data_element", 1, 0, -40, 210, False],
+					["j2735_2016.driveAxleLocation", "j2735_2016.j1939Data_element", 1, 0, 0, 255, False],	            
+					["j2735_2016.driveAxleLiftAirPressure", "j2735_2016.j1939j1939Data_elementData", 1, 0, 0, 1000, False],
+					["j2735_2016.driveAxleTemperature", "j2735_2016.j1939Data_element", 1, 0, -40, 210, False],
+					["j2735_2016.driveAxleLubePressure", "j2735_2016.j1939Data_element", 1, 0, 0, 250, False],
+					["j2735_2016.steeringAxleLubePressure", "j2735_2016.j1939Data_element", 1, 0, 0, 250, False],	            
+			# weatherReport
+					["j2735_2016.isRaining", "j2735_2016.weatherReport_element", 1, 0, 1, 3, False],		    
+					["j2735_2016.rainRate", "j2735_2016.weatherReport_element", 2, 0, 0, 65535, False],			    
+					["j2735_2016.precipSituation", "j2735_2016.weatherReport_element", 1, 0, 1, 15, False],			    
+					["j2735_2016.solarRadiation", "j2735_2016.weatherReport_element", 2, 0, 0, 65535, False],			    
+					["j2735_2016.friction", "j2735_2016.weatherReport_element", 1, 0, 0, 101, False],	
+					["j2735_2016.raodFriction", "j2735_2016.weatherReport_element", 1, 0, 0, 50, False],		            
+			["j2735_2016.gnssStatus", "j2735_2016.dataSet_element", 1, 0, 1, 7, False],		     	      
+		# ["j2735_2016.regional", "j2735_2016.vehicleType_element", 1, 0, 1, 4, False],
+]
+saej2735_pvd_refdf = pd.DataFrame(saej2735_pvd_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
