@@ -8,7 +8,7 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_colwidth', None)
 pd.set_option('display.width', 1000)
 
-from j2735_ref_tables import saej2735_bsm_refdf, saej2735_spat_refdf, saej2735_rsa_refdf, saej2735_tim_refdf, saej2735_rsa_refdf, saej2735_map_refdf
+from j2735_ref_tables import *
 from ieee16093_ref_tables import ieee16093_wsmp_refdf
 from ieee16092_ref_tables import ieee16092_spdu_refdf
 
@@ -114,16 +114,36 @@ def analyze(tree):
                     messagename = "SAE J2735: " + re.findall(r"messageId: (.+)", messageId.attrib.get('showname'))[0]
                     codenum = int(messageId.attrib.get('show'))
                     match codenum:
-                        case 20:    # BSM
-                            refdf = saej2735_bsm_refdf
-                        case 27:    # RSA 
-                            refdf = saej2735_rsa_refdf
-                        case 19:    # SPaT
-                            refdf = saej2735_spat_refdf
-                        case 31:    # TIM 
-                            refdf = saej2735_tim_refdf
                         case 18:    # MAP
                             refdf = saej2735_map_refdf
+                        case 19:    # SPAT
+                            refdf = saej2735_spat_refdf
+                        case 20:    # BSM
+                            refdf = saej2735_bsm_refdf
+                        case 26:    # PVD
+                            refdf = saej2735_pvd_refdf
+                        case 27:    # RSA
+                            refdf = saej2735_rsa_refdf
+                        case 28:    # RTCM
+                            refdf = saej2735_rtcm_refdf
+                        case 29:    # SRM
+                            refdf = saej2735_srm_refdf
+                        case 30:    # SSM
+                            refdf = saej2735_ssm_refdf
+                        case 31:    # TIM
+                            refdf = saej2735_tim_refdf
+                        case 32:    # PSM
+                            refdf = saej2735_psm_refdf
+                        case 33:    # RSM
+                            refdf = saej2735_rsm_refdf
+                        case 37:    # TAM
+                            refdf = saej2735_tam_refdf
+                        case 38:    # TUM
+                            refdf = saej2735_tum_refdf
+                        case 39:    # TUMack
+                            refdf = saej2735_tumack_refdf
+                        case 41:     # SDSM
+                            refdf = saej2735_sdsm_refdf
                         case _:
                             iop_file = False
                             iop_file_fail_desc = iop_file_fail_desc + "Invalid messageId: " + messageId + "\n"
