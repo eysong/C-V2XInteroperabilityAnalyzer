@@ -10,7 +10,98 @@ import pandas as pd
 # 6 = UTF8 string [minlen, maxlen]
 # 7 = signer [00, 00]
 
-saej2735_bsm_ref = [    # col[0] = field name, col[1] = parent name, col[2] = length, col[3] = eval method, col[4] = ref value 1, col[5] = ref value 2, col[6] = mandatory?
+# col[0] = field name, col[1] = parent name, col[2] = length, col[3] = eval method, col[4] = ref value 1, col[5] = ref value 2, col[6] = mandatory?
+cols = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"]
+
+saej2735_map_ref = [ # 18
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.msgIssueRevision", "j2735_2016.value_element", 1, 0, 0, 127, True],
+    ["j2735_2016.layerType", "j2735_2016.value_element", 1, 0, 0, 7, False],
+    ["j2735_2016.layerID", "j2735_2016.value_element", 1, 0, 0, 100, False],
+    ["j2735_2016.name", "j2735_2016.IntersectionGeometry_element", 1, 5, 1, 63, False],    
+    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.revision", "j2735_2016.IntersectionGeometry_element", 1, 0, 0, 127, True],
+    ["j2735_2016.lat", "j2735_2016.refPoint_element", 4, 0, -900000000, 900000001, True],
+    ["j2735_2016.long", "j2735_2016.refPoint_element", 4, 0, -1799999999, 1800000001, True],
+    ["j2735_2016.elevation", "j2735_2016.refPoint_element", 2, 0, -4096, 61439, False],
+    ["j2735_2016.laneWidth", "j2735_2016.IntersectionGeometry_element", 2, 0, 0, 32767, False],
+    ["j2735_2016.type", "j2735_2016.RegulatorySpeedLimit_element", 1, 0, 0, 12, False],
+    ["j2735_2016.speed", "j2735_2016.RegulatorySpeedLimit_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.laneID", "j2735_2016.GenericLane_element", 1, 0, 0, 255, True],
+    ["j2735_2016.name", "j2735_2016.GenericLane_element", 1, 5, 1, 63, False],
+    ["j2735_2016.ingressApproach", "j2735_2016.GenericLane_element", 1, 0, 0, 15, False],
+    ["j2735_2016.egressApproach", "j2735_2016.GenericLane_element", 1, 0, 0, 15, False],
+    ["j2735_2016.directionalUse", "j2735_2016.laneAttributes_element", 1, 2, 2, 0, True],
+    ["j2735_2016.sharedWith", "j2735_2016.laneAttributes_element", 2, 2, 10, 0, True],
+    ["j2735_2016.laneType", "j2735_2016.laneAttributes_element", 4, 0, 0, 7, True],
+    ["j2735_2016.vehicle", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.crosswalk", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.bikeLane", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.sidewalk", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.median", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.striping", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.trackedVehicle", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.parking", "j2735_2016.laneType", 2, 2, 16, 00, False],
+    ["j2735_2016.maneuvers", "j2735_2016.GenericLane_element", 2, 2, 12, 00, False],
+    ["j2735_2016.x", "j2735_2016.node_XY6_element", 2, 0, -32768, 32767, True],
+    ["j2735_2016.y", "j2735_2016.node_XY6_element", 2, 0, -32768, 32767, True],
+    ["j2735_2016.NodeAttributeXY", "j2735_2016.localNode_element", 1, 0, 0, 11, False],
+    ["j2735_2016.SegmentAttributeXY", "j2735_2016.enabled_element", 1, 0, 0, 37, False],
+    ["j2735_2016.SegmentAttributeXY", "j2735_2016.disabled_element", 1, 0, 0, 37, False],
+    ["j2735_2016.pathEndPointAngle", "j2735_2016.LaneDataAttribute_element", 1, 0, -150, 150, False],
+    ["j2735_2016.laneCrownPointCenter", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
+    ["j2735_2016.laneCrownPointLeft", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
+    ["j2735_2016.laneCrownPointRight", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
+    ["j2735_2016.laneAngle", "j2735_2016.LaneDataAttribute_element", 1, 0, -180, 180, False],
+    ["j2735_2016.type", "j2735_2016.RegulatorySpeedLimit_element", 1, 0, 0, 12, False],
+    ["j2735_2016.speed", "j2735_2016.RegulatorySpeedLimit_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.dWidth", "j2735_2016.attributes_element", 2, 0, -512, 511, False],
+    ["j2735_2016.dElevation", "j2735_2016.attributes_element", 2, 0, -512, 511, False],
+    ["j2735_2016.lane", "j2735_2016.connectingLane_element", 1, 0, 0, 255, False],
+    ["j2735_2016.maneuver", "j2735_2016.connectingLane_element", 2, 2, 12, 00, False],
+    ["j2735_2016.region", "j2735_2016.remoteIntersection_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.id", "j2735_2016.remoteIntersection_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.signalGroup", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
+    ["j2735_2016.userClass", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
+    ["j2735_2016.connectionID", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
+    ["j2735_2016.LaneID", "j2735_2016.overlays_element", 1, 0, 0, 255, False]
+]
+saej2735_map_refdf = pd.DataFrame(saej2735_map_ref, columns = cols) 
+
+saej2735_spat_ref = [ # 19
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 2, 0, 0, 527040, False],
+    ["j2735_2016.name", "j2735_2016.value_element", 1, 5, 1, 63, False],
+    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, True],
+    ["j2735_2016.revision", "j2735_2016.IntersectionState_element", 1, 0, 0, 127, True],
+    ["j2735_2016.status", "j2735_2016.IntersectionState_element", 2, 2, 16, 00, True],
+    ["j2735_2016.moy", "j2735_2016.IntersectionState_element", 2, 0, 0, 527040, False],
+    ["j2735_2016.timeStamp", "j2735_2016.IntersectionState_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.laneID", "j2735_2016.IntersectionState_element", 2, 0, 0, 255, False],
+    ["j2735_2016.movementName", "j2735_2016.MovementState_element", 1, 5, 1, 63, False],
+    ["j2735_2016.signalGroup", "j2735_2016.MovementState_element", 1, 0, 0, 255, True],
+    ["j2735_2016.eventState", "j2735_2016.MovementEvent_element", 1, 0, 0, 9, True],
+    ["j2735_2016.startTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
+    ["j2735_2016.minEndTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
+    ["j2735_2016.maxEndTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
+    ["j2735_2016.likelyTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
+    ["j2735_2016.confidence", "j2735_2016.timing_element", 2, 0, 0, 15, False],
+    ["j2735_2016.nextTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
+    ["j2735_2016.type", "j2735_2016.AdvisorySpeed_element", 1, 0, 0, 3, False],
+    ["j2735_2016.speed", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 500, False], # double length problem
+    ["j2735_2016.confidence", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 7, False],
+    ["j2735_2016.distance", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 10000, False], # double length problem
+    ["j2735_2016.class", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 255, False],
+    ["j2735_2016.connectionID", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
+    ["j2735_2016.queueLength", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
+    ["j2735_2016.availableStorageLength", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
+    ["j2735_2016.waitOnStop", "j2735_2016.ConnectionManeuverAssist_element", 1, 3, 00, 00, False],
+    ["j2735_2016.pedBicycleDetect", "j2735_2016.ConnectionManeuverAssist_element", 1, 3, 00, 00, False],
+]
+saej2735_spat_refdf = pd.DataFrame(saej2735_spat_ref, columns = cols)
+
+saej2735_bsm_ref = [ # 20
     ["j2735_2016.msgCnt", "j2735_2016.coreData_element", 1, 0, 0, 127, True],  # start of coreData (mandatory)
     ["j2735_2016.id", "j2735_2016.coreData_element", 4, 1, 4, 00, True],
     ["j2735_2016.secMark", "j2735_2016.coreData_element", 2, 0, 0, 65535, True],
@@ -116,65 +207,9 @@ saej2735_bsm_ref = [    # col[0] = field name, col[1] = parent name, col[2] = le
     ["j2735_2016.offset", "j2735_2016.dateTime_element", 2, 0, -840, 840, False],
     ["j2735_2016.vertEvent", "j2735_2016.obstacle_element", 1, 2, 5, 00, False],
     ]
-saej2735_bsm_refdf = pd.DataFrame(saej2735_bsm_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
+saej2735_bsm_refdf = pd.DataFrame(saej2735_bsm_ref, columns = cols)
 
-saej2735_map_ref = [
-    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
-    ["j2735_2016.msgIssueRevision", "j2735_2016.value_element", 1, 0, 0, 127, True],
-    ["j2735_2016.layerType", "j2735_2016.value_element", 1, 0, 0, 7, False],
-    ["j2735_2016.layerID", "j2735_2016.value_element", 1, 0, 0, 100, False],
-    ["j2735_2016.name", "j2735_2016.IntersectionGeometry_element", 1, 5, 1, 63, False],    
-    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.revision", "j2735_2016.IntersectionGeometry_element", 1, 0, 0, 127, True],
-    ["j2735_2016.lat", "j2735_2016.refPoint_element", 4, 0, -900000000, 900000001, True],
-    ["j2735_2016.long", "j2735_2016.refPoint_element", 4, 0, -1799999999, 1800000001, True],
-    ["j2735_2016.elevation", "j2735_2016.refPoint_element", 2, 0, -4096, 61439, False],
-    ["j2735_2016.laneWidth", "j2735_2016.IntersectionGeometry_element", 2, 0, 0, 32767, False],
-    ["j2735_2016.type", "j2735_2016.RegulatorySpeedLimit_element", 1, 0, 0, 12, False],
-    ["j2735_2016.speed", "j2735_2016.RegulatorySpeedLimit_element", 2, 0, 0, 8191, False],
-    ["j2735_2016.laneID", "j2735_2016.GenericLane_element", 1, 0, 0, 255, True],
-    ["j2735_2016.name", "j2735_2016.GenericLane_element", 1, 5, 1, 63, False],
-    ["j2735_2016.ingressApproach", "j2735_2016.GenericLane_element", 1, 0, 0, 15, False],
-    ["j2735_2016.egressApproach", "j2735_2016.GenericLane_element", 1, 0, 0, 15, False],
-    ["j2735_2016.directionalUse", "j2735_2016.laneAttributes_element", 1, 2, 2, 0, True],
-    ["j2735_2016.sharedWith", "j2735_2016.laneAttributes_element", 2, 2, 10, 0, True],
-    ["j2735_2016.laneType", "j2735_2016.laneAttributes_element", 4, 0, 0, 7, True],
-    ["j2735_2016.vehicle", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.crosswalk", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.bikeLane", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.sidewalk", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.median", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.striping", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.trackedVehicle", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.parking", "j2735_2016.laneType", 2, 2, 16, 00, False],
-    ["j2735_2016.maneuvers", "j2735_2016.GenericLane_element", 2, 2, 12, 00, False],
-    ["j2735_2016.x", "j2735_2016.node_XY6_element", 2, 0, -32768, 32767, True],
-    ["j2735_2016.y", "j2735_2016.node_XY6_element", 2, 0, -32768, 32767, True],
-    ["j2735_2016.NodeAttributeXY", "j2735_2016.localNode_element", 1, 0, 0, 11, False],
-    ["j2735_2016.SegmentAttributeXY", "j2735_2016.enabled_element", 1, 0, 0, 37, False],
-    ["j2735_2016.SegmentAttributeXY", "j2735_2016.disabled_element", 1, 0, 0, 37, False],
-    ["j2735_2016.pathEndPointAngle", "j2735_2016.LaneDataAttribute_element", 1, 0, -150, 150, False],
-    ["j2735_2016.laneCrownPointCenter", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
-    ["j2735_2016.laneCrownPointLeft", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
-    ["j2735_2016.laneCrownPointRight", "j2735_2016.LaneDataAttribute_element", 1, 0, -128, 127, False],
-    ["j2735_2016.laneAngle", "j2735_2016.LaneDataAttribute_element", 1, 0, -180, 180, False],
-    ["j2735_2016.type", "j2735_2016.RegulatorySpeedLimit_element", 1, 0, 0, 12, False],
-    ["j2735_2016.speed", "j2735_2016.RegulatorySpeedLimit_element", 2, 0, 0, 8191, False],
-    ["j2735_2016.dWidth", "j2735_2016.attributes_element", 2, 0, -512, 511, False],
-    ["j2735_2016.dElevation", "j2735_2016.attributes_element", 2, 0, -512, 511, False],
-    ["j2735_2016.lane", "j2735_2016.connectingLane_element", 1, 0, 0, 255, False],
-    ["j2735_2016.maneuver", "j2735_2016.connectingLane_element", 2, 2, 12, 00, False],
-    ["j2735_2016.region", "j2735_2016.remoteIntersection_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.id", "j2735_2016.remoteIntersection_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.signalGroup", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
-    ["j2735_2016.userClass", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
-    ["j2735_2016.connectionID", "j2735_2016.Connection_element", 1, 0, 0, 255, False],
-    ["j2735_2016.LaneID", "j2735_2016.overlays_element", 1, 0, 0, 255, False]
-]
-saej2735_map_refdf = pd.DataFrame(saej2735_map_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"]) 
-
-saej2735_pvd_ref = [
+saej2735_pvd_ref = [ # 26
     ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
     ["j2735_2016.segNum", "j2735_2016.value_element", 2, 0, 0, 32767, False],
     ["j2735_2016.name", "j2735_2016.probeID_element", 63, 5, 1, 63, False],
@@ -324,9 +359,9 @@ saej2735_pvd_ref = [
     ["j2735_2016.gnssStatus", "j2735_2016.dataSet_element", 1, 0, 1, 7, False],		     	      
     # ["j2735_2016.regional", "j2735_2016.vehicleType_element", 1, 0, 1, 4, False],
 ]
-saej2735_pvd_refdf = pd.DataFrame(saej2735_pvd_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
+saej2735_pvd_refdf = pd.DataFrame(saej2735_pvd_ref, columns = cols)
 
-saej2735_rsa_ref = [
+saej2735_rsa_ref = [ # 27
     ["j2735_2016.msgCnt", "j2735_2016.value_element", 1, 0, 0, 127, True],
     ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
     ["j2735_2016.typeEvent", "j2735_2016.value_element", 2, 0, 0, 65535, True],
@@ -354,41 +389,119 @@ saej2735_rsa_ref = [
     ["j2735_2016.throttle", "j2735_2016.speedConfidence_element", 1, 0, 0, 3, False],
     ["j2735_2016.furtherInfoID", "j2735_2016.value_element", 2, 1, 2, 00, False],
 ]
-saej2735_rsa_refdf = pd.DataFrame(saej2735_rsa_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
+saej2735_rsa_refdf = pd.DataFrame(saej2735_rsa_ref, columns = cols)
 
-saej2735_spat_ref = [
-    ["j2735_2016.timeStamp", "j2735_2016.value_element", 2, 0, 0, 527040, False],
-    ["j2735_2016.name", "j2735_2016.value_element", 1, 5, 1, 63, False],
-    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, True],
-    ["j2735_2016.revision", "j2735_2016.IntersectionState_element", 1, 0, 0, 127, True],
-    ["j2735_2016.status", "j2735_2016.IntersectionState_element", 2, 2, 16, 00, True],
-    ["j2735_2016.moy", "j2735_2016.IntersectionState_element", 2, 0, 0, 527040, False],
-    ["j2735_2016.timeStamp", "j2735_2016.IntersectionState_element", 2, 0, 0, 65535, False],
-    ["j2735_2016.laneID", "j2735_2016.IntersectionState_element", 2, 0, 0, 255, False],
-    ["j2735_2016.movementName", "j2735_2016.MovementState_element", 1, 5, 1, 63, False],
-    ["j2735_2016.signalGroup", "j2735_2016.MovementState_element", 1, 0, 0, 255, True],
-    ["j2735_2016.eventState", "j2735_2016.MovementEvent_element", 1, 0, 0, 9, True],
-    ["j2735_2016.startTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
-    ["j2735_2016.minEndTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
-    ["j2735_2016.maxEndTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
-    ["j2735_2016.likelyTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
-    ["j2735_2016.confidence", "j2735_2016.timing_element", 2, 0, 0, 15, False],
-    ["j2735_2016.nextTime", "j2735_2016.timing_element", 2, 0, 0, 36001, False],
-    ["j2735_2016.type", "j2735_2016.AdvisorySpeed_element", 1, 0, 0, 3, False],
-    ["j2735_2016.speed", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 500, False], # double length problem
-    ["j2735_2016.confidence", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 7, False],
-    ["j2735_2016.distance", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 10000, False], # double length problem
-    ["j2735_2016.class", "j2735_2016.AdvisorySpeed_element", 2, 0, 0, 255, False],
-    ["j2735_2016.connectionID", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
-    ["j2735_2016.queueLength", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
-    ["j2735_2016.availableStorageLength", "j2735_2016.ConnectionManeuverAssist_element", 2, 0, 0, 10000, False],
-    ["j2735_2016.waitOnStop", "j2735_2016.ConnectionManeuverAssist_element", 1, 3, 00, 00, False],
-    ["j2735_2016.pedBicycleDetect", "j2735_2016.ConnectionManeuverAssist_element", 1, 3, 00, 00, False],
+saej2735_rtcm_ref = [ # 28
+    ["j2735_2016.msgCnt", "j2735_2016.value_element", 1, 0, 0, 127, True],
+    ["j2735_2016.rtcm", "j2735_2016.value_element", 1, 0, 0, 3, True],
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.year", "j2735_2016.utcTime_element", 2, 0, 0, 4095, False],
+    ["j2735_2016.month", "j2735_2016.utcTime_element", 1, 0, 0, 12, False],
+    ["j2735_2016.day", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+    ["j2735_2016.hour", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+    ["j2735_2016.minute", "j2735_2016.utcTime_element", 1, 0, 0, 60, False],
+    ["j2735_2016.second", "j2735_2016.utcTime_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.offset", "j2735_2016.utcTime_element", 2, 0, -840, 840, False],
+    ["j2735_2016.long", "j2735_2016.startVector_element", 4, 0, -1799999999, 1800000001, True],
+    ["j2735_2016.lat", "j2735_2016.startVector_element", 4, 0, -900000000, 900000001, True],
+    ["j2735_2016.elevation", "j2735_2016.startVector_element", 2, 0, -4096, 61439, False],
+    ["j2735_2016.heading", "j2735_2016.startVector_element", 2, 0, 0, 28800, False],
+    ["j2735_2016.transmission", "j2735_2016.speed_element", 1, 0, 0, 7, False],
+    ["j2735_2016.speed", "j2735_2016.speed_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.semiMajor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.semiMinor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.timeConfidence", "j2735_2016.startVector_element", 1, 0, 0, 39, False],
+    ["j2735_2016.pos", "j2735_2016.posConfidence_element", 1, 0, 0, 15, True],
+    ["j2735_2016.elevation", "j2735_2016.posConfidence_element", 1, 0, 0, 15, True],
+    ["j2735_2016.heading", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+    ["j2735_2016.speed", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+    ["j2735_2016.throttle", "j2735_2016.speedConfidence_element", 1, 0, 0, 3, False],
+    ["j2735_2016.status", "j2735_2016.rtcmHeader_element", 1, 2, 8, 00, False],
+    ["j2735_2016.antOffsetX", "j2735_2016.offsetSet_element", 2, 0, -2048, 2047, False],
+    ["j2735_2016.antOffsetY", "j2735_2016.offsetSet_element", 2, 0, -256, 255, False],
+    ["j2735_2016.antOffsetZ", "j2735_2016.offsetSet_element", 2, 0, -512, 511, False],
+    ["j2735_2016.rtcmMessage", "j2735_2016.rtcmMessageList_element", 1, 1, 1023, 00, False],
+    # ["j2735_2016.regional", "j2735_2016.value_element", 1, 0, 0, 127, False],
 ]
-saej2735_spat_refdf = pd.DataFrame(saej2735_spat_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
+saej2735_rtcm_refdf = pd.DataFrame(saej2735_rtcm_ref, columns = cols)
 
-saej2735_tim_ref = [
+saej2735_srm_ref = [ # 29
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.second", "j2735_2016.value_element", 2, 0, 0, 65535, True],
+    ["j2735_2016.sequenceNumber", "j2735_2016.value_element", 1, 0, 0, 127, False],
+    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.requestId", "j2735_2016.request_element", 1, 0, 0, 255, False],
+    ["j2735_2016.requestType", "j2735_2016.request_element", 1, 0, 0, 3, False],
+    ["j2735_2016.lane", "j2735_2016.inBoundLane_element", 1, 0, 0, 255, False],
+    ["j2735_2016.approach", "j2735_2016.inBoundLane_element", 1, 0, 0, 15, False],
+    ["j2735_2016.connection", "j2735_2016.inBoundLane_element", 1, 0, 0, 255, False],
+    ["j2735_2016.lane", "j2735_2016.outBoundLane_element", 1, 0, 0, 255, False],
+    ["j2735_2016.approach", "j2735_2016.outBoundLane_element", 1, 0, 0, 15, False],
+    ["j2735_2016.connection", "j2735_2016.outBoundLane_element", 1, 0, 0, 255, False],
+    # ["j2735_2016.regional", "j2735_2016.request_element", 1, 0, 0, 127, False],
+    ["j2735_2016.minute", "j2735_2016.signalRequestPackage_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.second", "j2735_2016.signalRequestPackage_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.duration", "j2735_2016.signalRequestPackage_element", 2, 0, 0, 65535, False],
+    # ["j2735_2016.regional", "j2735_2016.signalRequestPackage_element", 1, 0, 0, 127, False],
+    ["j2735_2016.entityId", "j2735_2016.id_element", 4, 1, 4, 00, False],
+    ["j2735_2016.stationId", "j2735_2016.id_element", 4, 0, 0, 4294967295, False],
+    ["j2735_2016.role", "j2735_2016.type_element", 1, 0, 0, 22, False],
+    ["j2735_2016.subrole", "j2735_2016.type_element", 1, 0, 0, 15, False],
+    ["j2735_2016.request", "j2735_2016.type_element", 1, 0, 0, 15, False],
+    ["j2735_2016.iso3883", "j2735_2016.type_element", 1, 0, 0, 100, False],
+    ["j2735_2016.hpmsType", "j2735_2016.type_element", 1, 0, 0, 15, False],
+    # ["j2735_2016.regional", "j2735_2016.type_element", 1, 0, 0, 127, False],
+    ["j2735_2016.lat", "j2735_2016.position_element", 4, 0, -900000000, 900000001, False],
+    ["j2735_2016.long", "j2735_2016.position_element", 4, 0, -1799999999, 1800000001, False],
+    ["j2735_2016.elevation", "j2735_2016.position_element", 2, 0, -4096, 61439, False],
+    # ["j2735_2016.regional", "j2735_2016.position_element", 1, 0, 0, 127, False],
+    ["j2735_2016.heading", "j2735_2016.position_element", 2, 0, 0, 28800, False],
+    ["j2735_2016.transmission", "j2735_2016.speed_element", 1, 0, 0, 7, False],
+    ["j2735_2016.speed", "j2735_2016.speed_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.name", "j2735_2016.requestor_element", 63, 5, 1, 63, False],
+    ["j2735_2016.routeName", "j2735_2016.requestor_element", 63, 5, 1, 63, False],
+    ["j2735_2016.transitStatus", "j2735_2016.requestor_element", 1, 2, 8, 00, False],
+    ["j2735_2016.transitOccupancy", "j2735_2016.requestor_element", 1, 0, 0, 7, False],
+    ["j2735_2016.transitSchedule", "j2735_2016.requestor_element", 1, 0, -122, 121, False],
+    # ["j2735_2016.regional", "j2735_2016.value_element", 1, 0, 0, 127, False],
+]
+saej2735_srm_refdf = pd.DataFrame(saej2735_srm_ref, columns = cols)
+
+saej2735_ssm_ref = [ # 30
+    ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
+    ["j2735_2016.second", "j2735_2016.value_element", 2, 0, 0, 65535, True],
+    ["j2735_2016.sequenceNumber", "j2735_2016.value_element", 1, 0, 0, 127, False],
+    ["j2735_2016.sequenceNumber", "j2735_2016.status_element", 1, 0, 0, 127, False],
+    ["j2735_2016.region", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.id", "j2735_2016.id_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.entityId", "j2735_2016.id_element", 4, 1, 4, 00, False],
+    ["j2735_2016.stationId", "j2735_2016.id_element", 4, 0, 0, 4294967295, False],
+    ["j2735_2016.request", "j2735_2016.requester_element", 1, 0, 0, 255, False],
+    ["j2735_2016.sequenceNumber", "j2735_2016.requester_element", 1, 0, 0, 127, False],
+    ["j2735_2016.role", "j2735_2016.requester_element", 1, 0, 0, 22, False],
+    ["j2735_2016.role", "j2735_2016.typeData_element", 1, 0, 0, 22, False],
+    ["j2735_2016.subrole", "j2735_2016.typeData_element", 1, 0, 0, 15, False],
+    ["j2735_2016.request", "j2735_2016.typeData_element", 1, 0, 0, 15, False],
+    ["j2735_2016.iso3883", "j2735_2016.typeData_element", 1, 0, 0, 100, False],
+    ["j2735_2016.hpmsType", "j2735_2016.typeData_element", 1, 0, 0, 15, False],
+    ["j2735_2016.lane", "j2735_2016.inboundOn_element", 1, 0, 0, 255, False],
+    ["j2735_2016.approach", "j2735_2016.inboundOn_element", 1, 0, 0, 15, False],
+    ["j2735_2016.connection", "j2735_2016.inboundOn_element", 1, 0, 0, 255, False],
+    ["j2735_2016.lane", "j2735_2016.outboundOn_element", 1, 0, 0, 255, False],
+    ["j2735_2016.approach", "j2735_2016.outboundOn_element", 1, 0, 0, 15, False],
+    ["j2735_2016.connection", "j2735_2016.outboundOn_element", 1, 0, 0, 255, False],
+    ["j2735_2016.minute", "j2735_2016.sigStatus_element", 527040, False],
+    ["j2735_2016.second", "j2735_2016.sigStatus_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.duration", "j2735_2016.sigStatus_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.status", "j2735_2016.sigStatus_element", 1, 0, 0, 7, False],
+    # ["j2735_2016.regional", "j2735_2016.sigStatus_element", 1, 0, 0, 127, False],
+    # ["j2735_2016.regional", "j2735_2016.status_element", 1, 0, 0, 127, False],
+]
+saej2735_ssm_refdf = pd.DataFrame(saej2735_ssm_ref, columns = cols)
+
+saej2735_tim_ref = [ # 31
     ["j2735_2016.msgCnt", "j2735_2016.value_element", 1, 0, 0, 127, True],
     ["j2735_2016.timeStamp", "j2735_2016.value_element", 3, 0, 0, 527040, False],
     ["j2735_2016.packetID", "j2735_2016.value_element", 9, 1, 9, 00, False],
@@ -431,4 +544,102 @@ saej2735_tim_ref = [
     ["j2735_2016.text", "j2735_2016.item", 5, 5, 1, 500, False],
     ["j2735_2016.url", "j2735_2016.TravelerDataFrame_element", 9, 5, 1, 15, False],
 ]
-saej2735_tim_refdf = pd.DataFrame(saej2735_tim_ref, columns = ["field", "parent", "length", "eval method", "val1", "val2", "mandatory"])
+saej2735_tim_refdf = pd.DataFrame(saej2735_tim_ref, columns = cols)
+
+saej2735_psm_ref = [ # 32
+    ["j2735_2016.basicType", "j2735_2016.value_element", 1, 0, 0, 4, True],
+    ["j2735_2016.secMark", "j2735_2016.value_element", 2, 0, 0, 65535, True],
+    ["j2735_2016.msgCnt", "j2735_2016.value_element", 1, 0, 0, 127, True],
+    ["j2735_2016.id", "j2735_2016.value_element", 4, 1, 4, 00, True],
+    ["j2735_2016.lat", "j2735_2016.position_element", 4, 0, -900000000, 900000001, True],
+    ["j2735_2016.long", "j2735_2016.position_element", 4, 0, -1799999999, 1800000001, True],
+    ["j2735_2016.elevation", "j2735_2016.position_element", 2, 0, -4096, 61439, False],
+    # ["j2735_2016.regional", "j2735_2016.position_element", 1, 0, 0, 127, False],
+    ["j2735_2016.semiMajor", "j2735_2016.accuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.semiMinor", "j2735_2016.accuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.orientation", "j2735_2016.accuracy_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.speed", "j2735_2016.value_element", 1, 0, 0, 8191, True],
+    ["j2735_2016.heading", "j2735_2016.value_element", 2, 0, 0, 28800, True],
+    ["j2735_2016.long", "j2735_2016.accelSet_element", 2, 0, -2000, 2001, False],
+    ["j2735_2016.lat", "j2735_2016.accelSet_element", 2, 0, -2000, 2001, False],
+    ["j2735_2016.vert", "j2735_2016.accelSet_element", 1, 0, -127, 127, False],
+    ["j2735_2016.yaw", "j2735_2016.accelSet_element", 2, 0, -32767, 32767, False], 
+    ["j2735_2016.year", "j2735_2016.utcTime_element", 2, 0, 0, 4095, False],
+    ["j2735_2016.month", "j2735_2016.utcTime_element", 1, 0, 0, 12, False],
+    ["j2735_2016.day", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+    ["j2735_2016.hour", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
+    ["j2735_2016.minute", "j2735_2016.utcTime_element", 1, 0, 0, 60, False],
+    ["j2735_2016.second", "j2735_2016.utcTime_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.offset", "j2735_2016.utcTime_element", 2, 0, -840, 840, False],
+    ["j2735_2016.long", "j2735_2016.initialPosition_element", 4, 0, -1799999999, 1800000001, False],
+    ["j2735_2016.lat", "j2735_2016.initialPosition_element", 4, 0, -900000000, 900000001, False],
+    ["j2735_2016.elevation", "j2735_2016.initialPosition_element", 2, 0, -4096, 61439, False],
+    ["j2735_2016.heading", "j2735_2016.initialPosition_element", 2, 0, 0, 28800, False],
+    ["j2735_2016.transmission", "j2735_2016.TransmissionAndSpeed_element", 1, 0, 0, 7, False],
+    ["j2735_2016.speed", "j2735_2016.TransmissionAndSpeed_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.semiMajor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.semiMinor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, False],
+    ["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.timeConfidence", "j2735_2016.initialPosition_element", 1, 0, 0, 39, False],
+    ["j2735_2016.pos", "j2735_2016.posConfidence_element", 1, 0, 0, 15, False],
+    ["j2735_2016.elevation", "j2735_2016.posConfidence_element", 1, 0, 0, 15, False],
+    ["j2735_2016.heading", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+    ["j2735_2016.speed", "j2735_2016.speedConfidence_element", 1, 0, 0, 7, False],
+    ["j2735_2016.throttle", "j2735_2016.speedConfidence_element", 1, 0, 0, 3, False],
+    ["j2735_2016.currGNSSstatus", "j2735_2016.pathHistory_element", 1, 0, 8, 00, False],
+    ["j2735_2016.latOffset", "j2735_2016.pathHistoryPoint_element", 3, 0, -131072, 131071, False],
+    ["j2735_2016.lonOffset", "j2735_2016.pathHistoryPoint_element", 3, 0, -131072, 131071, False],
+    ["j2735_2016.elevationOffset", "j2735_2016.pathHistoryPoint_element", 2, 0, -2048, 2047, False],
+    ["j2735_2016.timeOffset", "j2735_2016.pathHistoryPoint_element", 2, 0, 0, 65535, False],
+    ["j2735_2016.speed", "j2735_2016.pathHistoryPoint_element", 2, 0, 0, 8191, False],
+    ["j2735_2016.semiMajor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, True],
+    ["j2735_2016.semiMinor", "j2735_2016.posAccuracy_element", 1, 0, 0, 255, True],
+    ["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, True],
+    ["j2735_2016.heading", "j2735_2016.pathHistoryPoint_element", 1, 0, 0, 240, False],
+    ["j2735_2016.radiusOfCurve", "j2735_2016.pathPrediction_element", 2, 0, -32767, 32767, False],
+    ["j2735_2016.confidence", "j2735_2016.pathPrediction_element", 1, 0, 0, 200, False],
+    ["j2735_2016.human", "j2735_2016.propulsion_element", 1, 0, 0, 5, False],
+    ["j2735_2016.animal", "j2735_2016.propulsion_element", 1, 0, 0, 3, False],
+    ["j2735_2016.motor", "j2735_2016.propulsion_element", 1, 0, 0, 5, False],
+    ["j2735_2016.useState", "j2735_2016.value_element", 1, 2, 9, 00, False],
+    ["j2735_2016.crossRequest", "j2735_2016.value_element", 1, 3, 00, 00, False],
+    ["j2735_2016.crossState", "j2735_2016.value_element", 1, 3, 00, 00, False],
+    ["j2735_2016.clusterSize", "j2735_2016.value_element", 1, 0, 0, 3, False],
+    ["j2735_2016.clusterRadius", "j2735_2016.value_element", 1, 0, 0, 100, False],
+    ["j2735_2016.eventResponderType", "j2735_2016.value_element", 1, 0, 0, 7, False],
+    ["j2735_2016.activityType", "j2735_2016.value_element", 1, 2, 6, 00, False],
+    ["j2735_2016.activitySubType", "j2735_2016.value_element", 1, 2, 7, 00, False],
+    ["j2735_2016.assistType", "j2735_2016.value_element", 1, 2, 6, 00, False],
+    ["j2735_2016.sizing", "j2735_2016.value_element", 1, 2, 5, 00, False],
+    ["j2735_2016.attachment", "j2735_2016.value_element", 1, 0, 0, 6, False],
+    ["j2735_2016.attachmentRadius", "j2735_2016.value_element", 1, 0, 0, 200, False],
+    ["j2735_2016.animalType", "j2735_2016.value_element", 1, 0, 0, 3, False],
+    # ["j2735_2016.regional", "j2735_2016.value_element", 1, 0, 0, 127, False],
+]
+saej2735_psm_refdf = pd.DataFrame(saej2735_psm_ref, columns = cols)
+
+saej2735_rsm_ref = [ # 33
+    # Reserved for further use (ref. 2024.09 version)
+]
+saej2735_rsm_refdf = pd.DataFrame(saej2735_rsm_ref, columns = cols)
+
+saej2735_tam_ref = [ # 37
+    # Refer to SAE J3217 2022.06
+
+]
+saej2735_tam_refdf = pd.DataFrame(saej2735_tam_ref, columns = cols)
+
+saej2735_tum_ref = [ # 38
+    # Refer to SAE J3217 2022.06
+]
+saej2735_tum_refdf = pd.DataFrame(saej2735_tum_ref, columns = cols)
+
+saej2735_tumack_ref = [ # 39
+    # Refer to SAE J3217 2022.06
+]
+saej2735_tumack_refdf = pd.DataFrame(saej2735_tumack_ref, columns = cols)
+
+saej2735_sdsm_ref = [ # 41
+    # Refer to SAE J3224 2022.08
+]
+saej2735_sdsm_refdf = pd.DataFrame(saej2735_sdsm_ref, columns = cols)
