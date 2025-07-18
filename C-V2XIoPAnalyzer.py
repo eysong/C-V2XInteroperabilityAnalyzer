@@ -59,8 +59,8 @@ def boolean_check(fieldval):
 
 # Eval Method 4: hashalg list
 def hashalg_list(field):
-    hashname = re.findall(r"HashAlgorithm: (\w+)", field.attrib.get('showname'))[0]
-    if ((hashname == "sha256") or (hashname == "sha384") or (hashname == "sm3")):
+    hashalg = re.findall(r"HashAlgorithm: (\w+)", field.attrib.get('showname'))[0]
+    if ((hashalg == "sha256") or (hashalg == "sha384") or (hashalg == "sm3")):
         return True
     else:
         return False
@@ -69,7 +69,7 @@ def hashalg_list(field):
 def ia5str(row, fieldval, fieldlen):
     minlength = row.get('val1').values[0]
     maxlength = row.get('val2').values[0]
-    if (not (minlength <= fieldlen) and not (fieldlen >= maxlength)):
+    if not ((minlength <= fieldval) and (fieldval <= maxlength)):
         return False
     try: 
         fieldval.encode(encoding = 'ascii')
@@ -81,7 +81,7 @@ def ia5str(row, fieldval, fieldlen):
 def utf8str(row, fieldval, fieldlen):
     minlength = row.get('val1').values[0]
     maxlength = row.get('val2').values[0]
-    if (not (minlength <= fieldlen) and not (fieldlen >= maxlength)):
+    if not ((minlength <= fieldval) and (fieldval <= maxlength)):
         return False
     try: 
         fieldval.encode(encoding = 'UTF-8')
