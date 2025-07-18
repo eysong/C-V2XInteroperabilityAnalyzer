@@ -206,7 +206,7 @@ saej2735_bsm_ref = [ # 20
     ["j2735_2016.second", "j2735_2016.dateTime_element", 2, 0, 0, 65535, False],
     ["j2735_2016.offset", "j2735_2016.dateTime_element", 2, 0, -840, 840, False],
     ["j2735_2016.vertEvent", "j2735_2016.obstacle_element", 1, 2, 5, 00, False],
-    ]
+]
 saej2735_bsm_refdf = pd.DataFrame(saej2735_bsm_ref, columns = cols)
 
 saej2735_pvd_ref = [ # 26
@@ -252,7 +252,7 @@ saej2735_pvd_ref = [ # 26
     ["j2735_2016.responderType", "j2735_2016.vehicleType_element", 2, 0, 9729, 9742, False],
     ["j2735_2016.fuelType", "j2735_2016.vehicleType_element", 1, 0, 0, 15, False], 
     # ["j2735_2016.regional", "j2735_2016.vehicleType_element", 1, 0, 1, 4, False],    
-    ["j2735_2016.events", "j2735_2016.safetyExt_element", 1, 0, 0, 12, False],
+    ["j2735_2016.events", "j2735_2016.safetyExt_element", 2, 0, 0, 12, False],
     ["j2735_2016.year", "j2735_2016.utcTime_element", 2, 0, 0, 4095, False],
     ["j2735_2016.month", "j2735_2016.utcTime_element", 1, 0, 0, 12, False],
     ["j2735_2016.day", "j2735_2016.utcTime_element", 1, 0, 0, 31, False],
@@ -271,8 +271,8 @@ saej2735_pvd_ref = [ # 26
     ["j2735_2016.orientation", "j2735_2016.posAccuracy_element", 2, 0, 0, 65535, False],  
     ["j2735_2016.radiusOfCurve", "j2735_2016.pathPrediction_element", 2, 0, -32726, 32726, False],
     ["j2735_2016.confidence", "j2735_2016.pathPrediction_element", 1, 0, 0, 200, False],  
-    ["j2735_2016.lights", "j2735_2016.safetyExt_element", 1, 0, 0, 8, False],
-    ["j2735_2016.lights", "j2735_2016.dataSet_element", 1, 0, 0, 9, False],	    
+    ["j2735_2016.lights", "j2735_2016.safetyExt_element", 2, 1, 9, 00, False],
+    ["j2735_2016.lights", "j2735_2016.dataSet_element", 2, 1, 9, 00, False],	    
     ["j2735_2016.lightBar", "j2735_2016.dataSet_element", 1, 0, 0, 8, False],	    
     ["j2735_2016.statusfront", "j2735_2016.safetyExt_element", 1, 0, 0, 6, False],	
     ["j2735_2016.rateFront", "j2735_2016.safetyExt_element", 1, 0, 0, 127, False],	
@@ -356,7 +356,7 @@ saej2735_pvd_ref = [ # 26
     ["j2735_2016.solarRadiation", "j2735_2016.weatherReport_element", 2, 0, 0, 65535, False],			    
     ["j2735_2016.friction", "j2735_2016.weatherReport_element", 1, 0, 0, 101, False],	
     ["j2735_2016.raodFriction", "j2735_2016.weatherReport_element", 1, 0, 0, 50, False],		            
-    ["j2735_2016.gnssStatus", "j2735_2016.dataSet_element", 1, 0, 1, 7, False],		     	      
+    ["j2735_2016.gnssStatus", "j2735_2016.dataSet_element", 1, 1, 8, 00, False],		     	      
     # ["j2735_2016.regional", "j2735_2016.vehicleType_element", 1, 0, 1, 4, False],
 ]
 saej2735_pvd_refdf = pd.DataFrame(saej2735_pvd_ref, columns = cols)
